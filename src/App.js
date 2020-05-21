@@ -1,21 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
+import { render } from "react-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+
 import './css/App.css'; 
 import './css/sidebar.css'; 
 import SideBar from './sidebar';  
+import Navbar from './Navigation/Navbar'
+
+const Home = () => (
+  <div>
+    <h2>Home Page </h2>
+  </div>
+);
+
+const Accounts = () => (
+  <div>
+    <h2>Accounts Page</h2>
+  </div>
+);
+const Budget = () => (
+  <div>
+    <h2>Budget Page</h2>
+  </div>
+);
 
 function App() {
   return (
-    <div id="App">
-      <SideBar pageWrapId={"page-wrap"} outerContainerId={"App"} />
-
-      <div id="page-wrap">
-        <h1>Pennywise</h1>
-        <h2>Check out our first page!</h2>
+    <Router>  
+      <div id="App">
+        <div id="page-wrap">   
+            <Navbar/>
+            <SideBar pageWrapId={"page-wrap"} outerContainerId={"nav-wrapper"} />
+        </div>
+        <Route exact path="/" component={Home} />
+        <Route path="/accounts" component={Accounts} />
+        <Route path="/budget" component={Budget} />
       </div>
-    </div>
+    </Router>
   );
 }
 
 export default App;
-  
+      
